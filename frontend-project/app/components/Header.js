@@ -34,6 +34,9 @@ export default function Header() {
           <a href="#testimonials" className="text-gray-600 hover:text-blue-600">
             Testimonials
           </a>
+          <a href="#case-studies" className="text-gray-600 hover:text-blue-600">
+            Case Studies
+          </a>
           <a href="#contact" className="text-gray-600 hover:text-blue-600">
             Contact
           </a>

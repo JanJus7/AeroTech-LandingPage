@@ -1,4 +1,5 @@
 import About from "./components/About";
+import CaseStudies from "./components/CaseStudies";
 import FlightTracker from "./components/FlightTracker";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
@@ -14,6 +15,7 @@ export default function Home() {
       <Services />
       <FlightTracker />
       <Testimonials />
+      <CaseStudies />
     </div>
   );
 }
