@@ -25,7 +25,10 @@ export default function Header() {
           <a href="#services" className="text-gray-600 hover:text-blue-600">
             Services
           </a>
-          <a href="#most-tracked-flights" className="text-gray-600 hover:text-blue-600">
+          <a
+            href="#most-tracked-flights"
+            className="text-gray-600 hover:text-blue-600"
+          >
             Most Tracked Flights
           </a>
           <a href="#testimonials" className="text-gray-600 hover:text-blue-600">

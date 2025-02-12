@@ -2,7 +2,12 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FaPlaneDeparture, FaPlaneArrival, FaPlane, FaUsers } from "react-icons/fa";
+import {
+  FaPlaneDeparture,
+  FaPlaneArrival,
+  FaPlane,
+  FaUsers,
+} from "react-icons/fa";
 
 export default function MostTrackedFlights() {
   const [flights, setFlights] = useState([]);
@@ -22,7 +27,11 @@ export default function MostTrackedFlights() {
 
       try {
         const response = await axios.request(options);
-        if (response.data && response.data.data && Array.isArray(response.data.data.data)) {
+        if (
+          response.data &&
+          response.data.data &&
+          Array.isArray(response.data.data.data)
+        ) {
           setFlights(response.data.data.data);
         } else {
           setError("No flight data available.");
@@ -39,7 +48,11 @@ export default function MostTrackedFlights() {
   }, []);
 
   if (loading) {
-    return <p className="text-center text-gray-600">Loading most tracked flights...</p>;
+    return (
+      <p className="text-center text-gray-600">
+        Loading most tracked flights...
+      </p>
+    );
   }
 
   if (error) {
@@ -55,7 +68,10 @@ export default function MostTrackedFlights() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {flights.map((flight, index) => (
-            <div key={index} className="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
+            <div
+              key={index}
+              className="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+            >
               <div>
                 <h3 className="text-xl font-bold text-blue-600 mb-4 text-center">
                   {flight.callsign || flight.flight || "Unknown Flight"}
@@ -78,14 +94,17 @@ export default function MostTrackedFlights() {
                 <div className="flex items-center mb-2">
                   <FaPlane className="text-gray-500 mr-2" />
                   <span className="text-gray-700">
-                    <strong>Aircraft:</strong> {flight.type || flight.model || "N/A"}
+                    <strong>Aircraft:</strong>{" "}
+                    {flight.type || flight.model || "N/A"}
                   </span>
                 </div>
               </div>
 
               <div className="mt-4 flex items-center justify-end text-sm text-gray-600">
                 <FaUsers className="text-purple-500 mr-2" />
-                <span><strong>{flight.clicks || 0}</strong> users tracking</span>
+                <span>
+                  <strong>{flight.clicks || 0}</strong> users tracking
+                </span>
               </div>
             </div>
           ))}
