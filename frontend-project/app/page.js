@@ -1,5 +1,6 @@
 import About from "./components/About";
 import CaseStudies from "./components/CaseStudies";
+import ContactForm from "./components/ContactForm";
 import FlightTracker from "./components/FlightTracker";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
@@ -16,6 +17,7 @@ export default function Home() {
       <FlightTracker />
       <Testimonials />
       <CaseStudies />
+      <ContactForm />
     </div>
   );
 }
