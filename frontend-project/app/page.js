@@ -12,6 +12,8 @@ import Testimonials from "./components/Testimonials";
 import { useLayoutEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { useScrollPosition } from "./hooks/useScrollPosition";
+import PersonalizedMessage from "./components/PersonalizedMessage";
+import TimeOnSite from "./components/TimeOnSite";
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -39,6 +41,7 @@ export default function Home() {
       <Testimonials />
       <CaseStudies />
       <ContactForm />
+      <TimeOnSite />
       <Footer />
       {showButton && (
         <button
@@ -48,6 +51,7 @@ export default function Home() {
           <FaArrowUp size={20} />
         </button>
       )}
+      <PersonalizedMessage />
     </div>
   );
 }
