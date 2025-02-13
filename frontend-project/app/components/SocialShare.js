@@ -25,7 +25,6 @@ export default function SocialShare({
         target="_blank"
         rel="noopener noreferrer"
         className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition"
-        aria-label="Share on Facebook"
       >
         <FaFacebook size={16} />
       </Link>
@@ -35,7 +34,6 @@ export default function SocialShare({
         target="_blank"
         rel="noopener noreferrer"
         className="bg-black text-white p-2 rounded-full hover:bg-blue-500 transition"
-        aria-label="Share on Twitter"
       >
         <FaXTwitter size={16} />
       </Link>
@@ -45,7 +43,6 @@ export default function SocialShare({
         target="_blank"
         rel="noopener noreferrer"
         className="bg-blue-700 text-white p-2 rounded-full hover:bg-blue-800 transition"
-        aria-label="Share on LinkedIn"
       >
         <FaLinkedin size={16} />
       </Link>
@@ -55,7 +52,6 @@ export default function SocialShare({
         target="_blank"
         rel="noopener noreferrer"
         className="bg-green-500 text-white p-2 rounded-full hover:bg-green-600 transition"
-        aria-label="Share on WhatsApp"
       >
         <FaWhatsapp size={16} />
       </Link>
