@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FaQuoteLeft, FaUserCircle } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
+import { Card, CardContent, Typography, Avatar } from "@mui/material";
 
 export default function Testimonials() {
   const [testimonials, setTestimonials] = useState([]);
@@ -49,23 +50,25 @@ export default function Testimonials() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
-            >
-              <div>
+            <Card key={testimonial.id} sx={{ minHeight: 180, borderRadius: 2, boxShadow: 3 }}>
+              <CardContent>
                 <FaQuoteLeft className="text-blue-500 text-3xl mb-4" />
-                <p className="text-gray-700 mb-4">{testimonial.body}</p>
-              </div>
-
-              <div className="flex items-center mt-4">
-                <FaUserCircle className="text-3xl text-gray-500 mr-3" />
-                <div>
-                  <p className="text-gray-900 font-bold">{testimonial.name}</p>
-                  <p className="text-gray-600 text-sm">{testimonial.email}</p>
+                <Typography variant="body1" color="text.primary" sx={{ mb: 2 }}>
+                  {testimonial.body}
+                </Typography>
+                <div className="flex items-center gap-3">
+                  <Avatar sx={{ bgcolor: "#3b82f6" }}>{testimonial.name[0]}</Avatar>
+                  <div>
+                    <Typography variant="subtitle1" sx={{ fontWeight: "bold" }}>
+                      {testimonial.name}
+                    </Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      {testimonial.email}
+                    </Typography>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
