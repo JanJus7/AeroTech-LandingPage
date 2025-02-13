@@ -10,10 +10,28 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import { useState } from "react";
+import { useReducer, useRef, useCallback } from "react";
+
+const formReducer = (state, action) => {
+  switch (action.type) {
+    case "START_SUBMIT":
+      return { ...state, isSubmitting: true };
+    case "STOP_SUBMIT":
+      return { ...state, isSubmitting: false };
+    case "SET_SUCCESS":
+      return { ...state, successMessage: action.message };
+    case "RESET":
+      return { ...state, successMessage: "", isSubmitting: false };
+    default:
+      return state;
+  }
+};
 
 export default function ContactForm() {
-  const [successMessage, setSuccessMessage] = useState("");
+  const [formState, dispatch] = useReducer(formReducer, {
+    isSubmitting: false,
+    successMessage: "",
+  });
 
   const ContactSchema = Yup.object().shape({
     name: Yup.string()
@@ -28,7 +46,11 @@ export default function ContactForm() {
       .required("Message is required"),
   });
 
-  const handleSubmit = (values, { resetForm, setSubmitting }) => {
+  const nameInputRef = useRef(null);
+
+  const handleSubmit = useCallback((values, { resetForm }) => {
+    dispatch({ type: "START_SUBMIT" });
+
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -37,18 +59,25 @@ export default function ContactForm() {
       .send(serviceID, templateID, values, publicKey)
       .then((response) => {
         console.log("SUCCESS!", response.status, response.text);
-        setSuccessMessage("Your message has been sent successfully!");
+        dispatch({
+          type: "SET_SUCCESS",
+          message: "Your message has been sent successfully!",
+        });
         resetForm();
+        nameInputRef.current?.focus();
       })
       .catch((error) => {
         console.error("FAILED...", error);
-        setSuccessMessage("Oops! Something went wrong. Please try again.");
+        dispatch({
+          type: "SET_SUCCESS",
+          message: "Oops! Something went wrong. Please try again.",
+        });
       })
       .finally(() => {
-        setSubmitting(false);
-        setTimeout(() => setSuccessMessage(""), 5000);
+        dispatch({ type: "STOP_SUBMIT" });
+        setTimeout(() => dispatch({ type: "RESET" }), 5000);
       });
-  };
+  }, []);
 
   return (
     <section className="py-16 bg-white" id="contact">
@@ -57,10 +86,10 @@ export default function ContactForm() {
           Contact Us
         </h2>
 
-        {successMessage && (
+        {formState.successMessage && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6 flex items-center justify-center">
             <FaCheckCircle className="text-green-500 mr-2" />
-            {successMessage}
+            {formState.successMessage}
           </div>
         )}
 
@@ -84,6 +113,7 @@ export default function ContactForm() {
                   name="name"
                   placeholder="Your Name"
                   className="w-full text-black px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  ref={nameInputRef}
                 />
                 <ErrorMessage
                   name="name"
@@ -138,10 +168,10 @@ export default function ContactForm() {
               <div className="text-center">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={formState.isSubmitting}
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition flex items-center justify-center"
                 >
-                  {isSubmitting ? (
+                  {formState.isSubmitting ? (
                     <>
                       <FaSpinner className="animate-spin mr-2" />
                       Sending...

@@ -1,6 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import {
   FaPlaneDeparture,
@@ -47,6 +45,8 @@ export default function MostTrackedFlights() {
     fetchMostTrackedFlights();
   }, []);
 
+  const allFlights = useMemo(() => flights, [flights]);
+
   if (loading) {
     return (
       <p className="text-center text-gray-600">
@@ -67,7 +67,7 @@ export default function MostTrackedFlights() {
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {flights.map((flight, index) => (
+          {allFlights.map((flight, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"

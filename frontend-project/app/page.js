@@ -9,11 +9,15 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
 
 export default function Home() {
   const [showButton, setShowButton] = useState(false);
+
+  useLayoutEffect(() => {
+    document.title = "AeroTech";
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
