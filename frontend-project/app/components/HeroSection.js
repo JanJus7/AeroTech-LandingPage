@@ -2,7 +2,7 @@ import SocialShare from "./SocialShare";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-screen bg-gradient-to-r from-blue-800 via-purple-800 to-indigo-900">
+    <section id="hero" className="relative h-screen bg-gradient-to-r from-blue-800 via-purple-800 to-indigo-900">
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           The Future of Aviation with{" "}
