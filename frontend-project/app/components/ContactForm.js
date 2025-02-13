@@ -14,14 +14,10 @@ import { useReducer, useRef, useCallback } from "react";
 
 const formReducer = (state, action) => {
   switch (action.type) {
-    case "START_SUBMIT":
-      return { ...state, isSubmitting: true };
-    case "STOP_SUBMIT":
-      return { ...state, isSubmitting: false };
     case "SET_SUCCESS":
       return { ...state, successMessage: action.message };
     case "RESET":
-      return { ...state, successMessage: "", isSubmitting: false };
+      return { successMessage: "" };
     default:
       return state;
   }
@@ -29,7 +25,6 @@ const formReducer = (state, action) => {
 
 export default function ContactForm() {
   const [formState, dispatch] = useReducer(formReducer, {
-    isSubmitting: false,
     successMessage: "",
   });
 
@@ -49,8 +44,6 @@ export default function ContactForm() {
   const nameInputRef = useRef(null);
 
   const handleSubmit = useCallback((values, { resetForm }) => {
-    dispatch({ type: "START_SUBMIT" });
-
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -74,7 +67,6 @@ export default function ContactForm() {
         });
       })
       .finally(() => {
-        dispatch({ type: "STOP_SUBMIT" });
         setTimeout(() => dispatch({ type: "RESET" }), 5000);
       });
   }, []);
@@ -113,7 +105,7 @@ export default function ContactForm() {
                   name="name"
                   placeholder="Your Name"
                   className="w-full text-black px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  ref={nameInputRef}
+                  innerRef={nameInputRef}
                 />
                 <ErrorMessage
                   name="name"
@@ -168,10 +160,10 @@ export default function ContactForm() {
               <div className="text-center">
                 <button
                   type="submit"
-                  disabled={formState.isSubmitting}
+                  disabled={isSubmitting}
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition flex items-center justify-center"
                 >
-                  {formState.isSubmitting ? (
+                  {isSubmitting ? (
                     <>
                       <FaSpinner className="animate-spin mr-2" />
                       Sending...
