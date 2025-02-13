@@ -9,24 +9,18 @@ import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useLayoutEffect } from "react";
 import { FaArrowUp } from "react-icons/fa";
+import { useScrollPosition } from "./hooks/useScrollPosition";
 
 export default function Home() {
-  const [showButton, setShowButton] = useState(false);
-
   useLayoutEffect(() => {
     document.title = "AeroTech";
   }, []);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowButton(window.scrollY > 300);
-    };
+  const scrollY = useScrollPosition();
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const showButton = scrollY > 300;
 
   const scrollToTop = () => {
     window.scrollTo({
