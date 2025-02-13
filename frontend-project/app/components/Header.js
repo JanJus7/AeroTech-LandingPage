@@ -66,8 +66,7 @@ export default function Header() {
       </div>
 
       {isMenuOpen && (
-        <nav className="bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 md:hidden shadow-md">
-          <div className="absolute inset-0 bg-black opacity-50"></div>
+        <nav className="bg-white md:hidden shadow-md">
 
           <a
             href="#about"
