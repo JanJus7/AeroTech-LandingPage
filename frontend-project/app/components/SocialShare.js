@@ -3,11 +3,17 @@
 import { FaFacebook, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function SocialShare({
-  url = window.location.href,
-  title = "Check this out!",
-}) {
+export default function SocialShare({ title = "Check this out!" }) {
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setUrl(window.location.href);
+    }
+  }, []);
+
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
 

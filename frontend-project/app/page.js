@@ -3,6 +3,8 @@
 import { useLayoutEffect, lazy, Suspense } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { useScrollPosition } from "./hooks/useScrollPosition";
+import Header from "./components/Header";
+import PersonalizedMessage from "./components/PersonalizedMessage";
 import { PersonalizationProvider } from "./context/PersonalizationContext";
 
 const About = lazy(() => import("./components/About"));
@@ -10,14 +12,10 @@ const CaseStudies = lazy(() => import("./components/CaseStudies"));
 const ContactForm = lazy(() => import("./components/ContactForm"));
 const FlightTracker = lazy(() => import("./components/FlightTracker"));
 const Footer = lazy(() => import("./components/Footer"));
-const Header = lazy(() => import("./components/Header"));
 const HeroSection = lazy(() => import("./components/HeroSection"));
 const Services = lazy(() => import("./components/Services"));
 const Testimonials = lazy(() => import("./components/Testimonials"));
 const TimeOnSite = lazy(() => import("./components/TimeOnSite"));
-const PersonalizedMessage = lazy(
-  () => import("./components/PersonalizedMessage")
-);
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -38,17 +36,13 @@ export default function Home() {
   return (
     <PersonalizationProvider>
       <div>
-        <Suspense
-          fallback={
-            <p className="text-center text-gray-600">Loading Header...</p>
-          }
-        >
-          <Header />
-        </Suspense>
+        <Header />
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Hero Section...</p>
+            <div className="text-center text-purple-500">
+              Loading Hero Section...
+            </div>
           }
         >
           <HeroSection />
@@ -56,7 +50,7 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading About...</p>
+            <div className="text-center text-blue-500">Loading About...</div>
           }
         >
           <About />
@@ -64,7 +58,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Services...</p>
+            <div className="text-center text-green-500">
+              Loading Services...
+            </div>
           }
         >
           <Services />
@@ -72,9 +68,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">
+            <div className="text-center text-yellow-500">
               Loading Flight Tracker...
-            </p>
+            </div>
           }
         >
           <FlightTracker />
@@ -82,7 +78,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Testimonials...</p>
+            <div className="text-center text-pink-500">
+              Loading Testimonials...
+            </div>
           }
         >
           <Testimonials />
@@ -90,7 +88,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Case Studies...</p>
+            <div className="text-center text-indigo-500">
+              Loading Case Studies...
+            </div>
           }
         >
           <CaseStudies />
@@ -98,7 +98,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Contact Form...</p>
+            <div className="text-center text-orange-500">
+              Loading Contact Form...
+            </div>
           }
         >
           <ContactForm />
@@ -106,7 +108,9 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Time On Site...</p>
+            <div className="text-center text-teal-500">
+              Loading Time on Site...
+            </div>
           }
         >
           <TimeOnSite />
@@ -114,7 +118,7 @@ export default function Home() {
 
         <Suspense
           fallback={
-            <p className="text-center text-gray-600">Loading Footer...</p>
+            <div className="text-center text-red-500">Loading Footer...</div>
           }
         >
           <Footer />
@@ -129,15 +133,7 @@ export default function Home() {
           </button>
         )}
 
-        <Suspense
-          fallback={
-            <p className="text-center text-gray-600">
-              Loading Personalized Message...
-            </p>
-          }
-        >
-          <PersonalizedMessage />
-        </Suspense>
+        <PersonalizedMessage />
       </div>
     </PersonalizationProvider>
   );

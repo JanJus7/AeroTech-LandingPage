@@ -6,12 +6,17 @@ export default function PersonalizedMessage() {
   const { showFeatures } = usePersonalization();
   const scrollY = useScrollPosition();
 
-  const flightTracker = document.getElementById("most-tracked-flights");
+  const flightTracker =
+    typeof document !== "undefined"
+      ? document.getElementById("most-tracked-flights")
+      : null;
   const flightTrackerTop = flightTracker?.offsetTop ?? 0;
   const flightTrackerHeight = flightTracker?.offsetHeight ?? 0;
 
   const isFlightTrackerVisible =
-    scrollY >= flightTrackerTop - window.innerHeight / 2 &&
+    scrollY >=
+      flightTrackerTop -
+        (typeof window !== "undefined" ? window.innerHeight / 2 : 0) &&
     scrollY <= flightTrackerTop + flightTrackerHeight;
 
   if (!showFeatures) return null;
