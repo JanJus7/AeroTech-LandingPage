@@ -1,7 +1,6 @@
 export default function HeroSection() {
   return (
-    <section className="relative h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600">
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+    <section className="relative h-screen bg-gradient-to-r from-blue-800 via-purple-800 to-indigo-900">
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
