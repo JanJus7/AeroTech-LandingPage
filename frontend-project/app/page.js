@@ -1,20 +1,23 @@
 "use client";
 
-import About from "./components/About";
-import CaseStudies from "./components/CaseStudies";
-import ContactForm from "./components/ContactForm";
-import FlightTracker from "./components/FlightTracker";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import Services from "./components/Services";
-import Testimonials from "./components/Testimonials";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, lazy, Suspense } from "react";
 import { FaArrowUp } from "react-icons/fa";
 import { useScrollPosition } from "./hooks/useScrollPosition";
-import PersonalizedMessage from "./components/PersonalizedMessage";
-import TimeOnSite from "./components/TimeOnSite";
 import { PersonalizationProvider } from "./context/PersonalizationContext";
+
+const About = lazy(() => import("./components/About"));
+const CaseStudies = lazy(() => import("./components/CaseStudies"));
+const ContactForm = lazy(() => import("./components/ContactForm"));
+const FlightTracker = lazy(() => import("./components/FlightTracker"));
+const Footer = lazy(() => import("./components/Footer"));
+const Header = lazy(() => import("./components/Header"));
+const HeroSection = lazy(() => import("./components/HeroSection"));
+const Services = lazy(() => import("./components/Services"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const TimeOnSite = lazy(() => import("./components/TimeOnSite"));
+const PersonalizedMessage = lazy(
+  () => import("./components/PersonalizedMessage")
+);
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -35,16 +38,88 @@ export default function Home() {
   return (
     <PersonalizationProvider>
       <div>
-        <Header />
-        <HeroSection />
-        <About />
-        <Services />
-        <FlightTracker />
-        <Testimonials />
-        <CaseStudies />
-        <ContactForm />
-        <TimeOnSite />
-        <Footer />
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Header...</p>
+          }
+        >
+          <Header />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Hero Section...</p>
+          }
+        >
+          <HeroSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading About...</p>
+          }
+        >
+          <About />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Services...</p>
+          }
+        >
+          <Services />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">
+              Loading Flight Tracker...
+            </p>
+          }
+        >
+          <FlightTracker />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Testimonials...</p>
+          }
+        >
+          <Testimonials />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Case Studies...</p>
+          }
+        >
+          <CaseStudies />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Contact Form...</p>
+          }
+        >
+          <ContactForm />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Time On Site...</p>
+          }
+        >
+          <TimeOnSite />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">Loading Footer...</p>
+          }
+        >
+          <Footer />
+        </Suspense>
+
         {showButton && (
           <button
             onClick={scrollToTop}
@@ -53,7 +128,16 @@ export default function Home() {
             <FaArrowUp size={20} />
           </button>
         )}
-        <PersonalizedMessage />
+
+        <Suspense
+          fallback={
+            <p className="text-center text-gray-600">
+              Loading Personalized Message...
+            </p>
+          }
+        >
+          <PersonalizedMessage />
+        </Suspense>
       </div>
     </PersonalizationProvider>
   );
