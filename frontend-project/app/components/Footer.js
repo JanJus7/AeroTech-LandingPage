@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -22,38 +23,38 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            <a
+            <Link
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
             >
               <FaFacebookF size={20} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
             >
               <FaTwitter size={20} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
             >
               <FaInstagram size={20} />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition"
             >
               <FaLinkedin size={20} />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -61,34 +62,34 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-4">Sitemap</h3>
           <ul className="space-y-2">
             <li>
-              <a href="#about" className="hover:text-white">
+              <Link href="#about" className="hover:text-white">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#services" className="hover:text-white">
+              <Link href="#services" className="hover:text-white">
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#most-tracked-flights" className="hover:text-white">
+              <Link href="#most-tracked-flights" className="hover:text-white">
                 Most Tracked Flights
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#testimonials" className="hover:text-white">
+              <Link href="#testimonials" className="hover:text-white">
                 Testimonials
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#case-studies" className="hover:text-white">
+              <Link href="#case-studies" className="hover:text-white">
                 Case Studies
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#contact" className="hover:text-white">
+              <Link href="#contact" className="hover:text-white">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -97,24 +98,24 @@ export default function Footer() {
           <h3 className="text-lg font-semibold text-white mb-4">Legal</h3>
           <ul className="space-y-2">
             <li>
-              <a
+              <Link
                 href="/privacy-policy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href="/terms-of-service"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white"
               >
                 Terms of Service
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
