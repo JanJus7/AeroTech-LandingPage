@@ -2,10 +2,10 @@
 
 import {
   FaFacebookF,
-  FaTwitter,
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 export default function Footer() {
@@ -37,7 +37,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-white transition"
             >
-              <FaTwitter size={20} />
+              <FaXTwitter size={20} />
             </Link>
             <Link
               href="https://instagram.com"
