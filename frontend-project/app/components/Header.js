@@ -1,11 +1,16 @@
 "use client";
 
-import { FaPaperPlane, FaBars, FaTimes } from "react-icons/fa";
+import { FaPaperPlane, FaBars, FaTimes, FaCog } from "react-icons/fa";
 import { useState } from "react";
 import { useScrollPosition } from "../hooks/useScrollPosition";
+import { usePersonalization } from "../context/PersonalizationContext";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { showFeatures, toggleFeatures } = usePersonalization();
+
+  const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
   const scrollY = useScrollPosition();
 
@@ -51,15 +56,40 @@ export default function Header() {
           </a>
         </nav>
 
-        <div className="md:hidden">
+        <button
+          onClick={toggleSettings}
+          className="relative hover:text-blue-600 ml-4"
+        >
+          <FaCog size={24} />
+        </button>
+
+        {isSettingsOpen && (
+          <div className="absolute top-16 right-4 bg-white border text-black border-gray-300 rounded-lg shadow-lg p-4 z-50">
+            <h3 className="font-bold text-lg mb-2">Settings</h3>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="features"
+                checked={showFeatures}
+                onChange={toggleFeatures}
+                className="mr-2"
+              />
+              <label htmlFor="features" className="cursor-pointer">
+                Show Personalization Features
+              </label>
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center justify-center md:hidden">
           <button
             onClick={toggleMenu}
-            className="text-gray-600 hover:text-blue-600 focus:outline-none"
+            className="hover:text-blue-600 focus:outline-none"
           >
             {isMenuOpen ? (
-              <FaTimes className="text-white w-6 h-6" />
+              <FaTimes className="w-6 h-6" />
             ) : (
-              <FaBars className="text-white w-6 h-6" />
+              <FaBars className="w-6 h-6" />
             )}
           </button>
         </div>

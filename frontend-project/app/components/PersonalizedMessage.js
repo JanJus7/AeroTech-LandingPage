@@ -1,7 +1,9 @@
 import { useScrollPosition } from "../hooks/useScrollPosition";
 import { FaPlane } from "react-icons/fa";
+import { usePersonalization } from "../context/PersonalizationContext";
 
 export default function PersonalizedMessage() {
+  const { showFeatures } = usePersonalization();
   const scrollY = useScrollPosition();
 
   const flightTracker = document.getElementById("most-tracked-flights");
@@ -11,6 +13,8 @@ export default function PersonalizedMessage() {
   const isFlightTrackerVisible =
     scrollY >= flightTrackerTop - window.innerHeight / 2 &&
     scrollY <= flightTrackerTop + flightTrackerHeight;
+
+  if (!showFeatures) return null;
 
   return (
     <div
