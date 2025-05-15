@@ -8,6 +8,19 @@
 
 **AeroTech Landing Page** is a high-performance, fully responsive website for a fictional aerospace company. It includes real-time flight tracking via FlightRadar API (RapidAPI), a working contact form powered by EmailJS, and a modern UI built with Next.js, Tailwind CSS, and Material UI.
 
+---
+
+## 🔗 Live Demo
+
+You can view the deployed project here:  
+👉 [https://aero-tech-landing-page.vercel.app/](https://aero-tech-landing-page.vercel.app/)
+
+The project is hosted on [Vercel](https://vercel.com), with API keys securely stored in environment variables. It runs 24/7 in the cloud with automatic deployment on every commit.
+
+---
+
+## For the best experience, click settings and disable popup notifications. It was required to pass the project :)
+
 ## ✨ Features
 
 - ✅ Mobile-first, responsive design
@@ -71,6 +84,3 @@ NEXT_PUBLIC_EMAILJS_USER_ID=your_emailjs_public_key
 
 # RapidAPI – FlightRadar API
 NEXT_PUBLIC_RAPIDAPI_KEY=your_rapidapi_key
-```
-
-This file is excluded from version control via .gitignore
